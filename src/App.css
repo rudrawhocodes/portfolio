@@ -1,0 +1,90 @@
+/* App Styles - Keep minimal, component styles in components */
+
+.app {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background: #000000;
+}
+
+.main-content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  background: #000000;
+}
+
+/* Page Sections */
+.section {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  padding: var(--space-4xl) 0;
+  overflow: hidden;
+}
+
+.section-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 var(--space-2xl);
+  width: 100%;
+}
+
+/* Section Headers */
+.section-header {
+  margin-bottom: var(--space-4xl);
+}
+
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: var(--space-md);
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.section-label::before {
+  content: '';
+  width: 40px;
+  height: 1px;
+  background: var(--color-accent);
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+
+.section-description {
+  font-size: 1.1rem;
+  color: var(--color-text-secondary);
+  max-width: 600px;
+  margin-top: var(--space-lg);
+  line-height: 1.7;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .section {
+    padding: var(--space-3xl) 0;
+    min-height: auto;
+  }
+  
+  .section-inner {
+    padding: 0 var(--space-lg);
+  }
+}
+
+@media (max-width: 480px) {
+  .section-inner {
+    padding: 0 var(--space-md);
+  }
+}

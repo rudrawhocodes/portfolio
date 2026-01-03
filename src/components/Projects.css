@@ -1,0 +1,286 @@
+.projects {
+  position: relative;
+  background: #000000;
+  background-image: 
+    radial-gradient(ellipse 80% 50% at 50% 0%, rgba(20, 20, 20, 0.8) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 50% 100%, rgba(15, 15, 15, 0.6) 0%, transparent 50%);
+}
+
+.section-description {
+  font-size: 1.0625rem;
+  color: rgba(255, 255, 255, 0.959);
+  max-width: 500px;
+  line-height: 1.7;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-xl);
+  margin-top: var(--space-3xl);
+}
+
+.project-card {
+  position: relative;
+  background: linear-gradient(145deg, #0a0a0a 0%, #050505 50%, #080808 100%);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  padding: var(--space-2xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  overflow: hidden;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 
+    0 0 0 1px rgba(255, 255, 255, 0.02),
+    0 4px 24px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+
+.project-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--project-color), transparent);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.project-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.02) 0%, transparent 50%);
+  pointer-events: none;
+  border-radius: 16px;
+}
+
+.project-card:hover {
+  border-color: rgba(255, 255, 255, 0.1);
+  transform: translateY(-8px);
+  box-shadow: 
+    0 0 0 1px rgba(255, 255, 255, 0.116),
+    0 8px 40px rgba(0, 0, 0, 0.6),
+    0 0 60px -20px var(--project-color),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.project-card:hover::before {
+  opacity: 0.8;
+}
+
+.project-glow {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at center, var(--project-color), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(40px);
+}
+
+.project-card:hover .project-glow {
+  opacity: 0.08;
+}
+
+.project-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.project-number {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--project-color);
+  opacity: 0.8;
+  text-shadow: 0 0 20px var(--project-color);
+}
+
+.project-category {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+  padding: var(--space-xs) var(--space-sm);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 6px;
+  backdrop-filter: blur(4px);
+}
+
+.project-title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #ffffff;
+  position: relative;
+  z-index: 1;
+  letter-spacing: -0.02em;
+}
+
+.project-description {
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.55);
+  position: relative;
+  z-index: 1;
+}
+
+.project-metrics {
+  display: flex;
+  gap: var(--space-xl);
+  padding: var(--space-lg) 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  position: relative;
+  z-index: 1;
+}
+
+.metric {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.metric-value {
+  font-family: var(--font-mono);
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--project-color);
+  text-shadow: 0 0 30px var(--project-color);
+}
+
+.metric-label {
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  position: relative;
+  z-index: 1;
+}
+
+.tag {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  color: rgba(255, 255, 255, 0.5);
+  padding: var(--space-xs) var(--space-sm);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.02);
+  transition: all 0.3s ease;
+}
+
+.project-card:hover .tag {
+  border-color: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.project-tech {
+  position: relative;
+  z-index: 1;
+}
+
+.tech-label {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  display: block;
+  margin-bottom: var(--space-xs);
+  opacity: 0.8;
+}
+
+.project-tech p {
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.project-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: auto;
+  padding-top: var(--space-lg);
+  position: relative;
+  z-index: 1;
+  transition: all 0.3s ease;
+}
+
+.project-link:hover {
+  color: var(--project-color);
+  text-shadow: 0 0 20px var(--project-color);
+}
+
+/* Projects CTA */
+.projects-cta {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--space-4xl);
+}
+
+.view-all-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-md);
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.7);
+  padding: var(--space-lg) var(--space-2xl);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.02);
+  transition: all 0.4s ease;
+  backdrop-filter: blur(4px);
+}
+
+.view-all-link:hover {
+  border-color: var(--color-accent);
+  background: rgba(0, 255, 136, 0.08);
+  color: #ffffff;
+  box-shadow: 0 0 40px -10px var(--color-accent);
+}
+
+@media (max-width: 1024px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .project-card {
+    padding: var(--space-xl);
+  }
+
+  .project-metrics {
+    flex-wrap: wrap;
+    gap: var(--space-md);
+  }
+
+  .metric {
+    flex: 1;
+    min-width: calc(50% - var(--space-md));
+  }
+}
