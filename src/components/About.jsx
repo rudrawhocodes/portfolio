@@ -67,7 +67,7 @@ const About = () => {
     { value: "Python", label: "Data & Prototyping" },
     { value: "DSA", label: "Core Expertise" },
     { value: "Software", label: "Domain Focus" },
-    { value: "Quantitative", label: "Domain Focus" },
+    { value: "Quantitative Finance", label: "Domain Focus" },
   ];
 
   return (
