@@ -1,5 +1,5 @@
 import { useRef, useEffect, useState } from 'react';
-import { motion, useInView, useSpring } from 'framer-motion';
+import { motion, useInView, useMotionValueEvent, useSpring, useTransform } from 'framer-motion';
 import gsap from 'gsap';
 import './Skills.css';
 
@@ -22,10 +22,10 @@ const Skills = () => {
       name: "Data Structures",
       icon: "⬡",
       skills: [
-        { name: "Trees & Graphs", level: 95, detail: "BST, AVL, Segment Trees, Graph Algorithms" },
-        { name: "Hash Tables", level: 90, detail: "Open Addressing, Chaining, Perfect Hashing" },
+        { name: "Trees & Graphs", level: 90, detail: "BST, AVL, Segment Trees, Graph Algorithms" },
+        { name: "Hash Tables", level: 85, detail: "Open Addressing, Chaining, Perfect Hashing" },
         { name: "Heaps & Queues", level: 90, detail: "Priority Queues, Deques, Circular Buffers" },
-        { name: "Advanced", level: 85, detail: "Tries, Union-Find, Fenwick Trees" },
+        { name: "Advanced", level: 70, detail: "Tries, Union-Find, Fenwick Trees" },
       ]
     },
     {
@@ -133,6 +133,12 @@ const SkillBar = ({ skill, index }) => {
   const barRef = useRef(null);
   const isInView = useInView(barRef, { once: true });
   const width = useSpring(0, { stiffness: 50, damping: 20 });
+  const [displayedPercent, setDisplayedPercent] = useState(0);
+  const widthPercent = useTransform(width, (latest) => `${latest}%`);
+
+  useMotionValueEvent(width, 'change', (latest) => {
+    setDisplayedPercent(Math.round(latest));
+  });
 
   useEffect(() => {
     if (isInView) {
@@ -152,14 +158,12 @@ const SkillBar = ({ skill, index }) => {
     >
       <div className="skill-header">
         <span className="skill-name">{skill.name}</span>
-        <motion.span className="skill-percent">
-          {Math.round(width.get())}%
-        </motion.span>
+        <span className="skill-percent">{displayedPercent}%</span>
       </div>
       <div className="skill-bar-container">
         <motion.div
           className="skill-bar-fill"
-          style={{ width: `${width.get()}%` }}
+          style={{ width: widthPercent }}
         />
         <div className="skill-bar-glow" style={{ width: `${skill.level}%` }} />
       </div>

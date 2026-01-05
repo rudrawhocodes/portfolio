@@ -20,6 +20,15 @@
   margin-top: var(--space-3xl);
 }
 
+.projects-placeholder {
+  margin-top: var(--space-3xl);
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.7);
+  letter-spacing: 0.06em;
+}
+
 .project-card {
   position: relative;
   background: linear-gradient(145deg, #0a0a0a 0%, #050505 50%, #080808 100%);
@@ -232,6 +241,15 @@
 .project-link:hover {
   color: var(--project-color);
   text-shadow: 0 0 20px var(--project-color);
+}
+
+.projects-coming-soon {
+  margin-top: var(--space-2xl);
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.65);
+  letter-spacing: 0.04em;
 }
 
 /* Projects CTA */
