@@ -35,6 +35,24 @@ const Experience = () => {
         { label: "Workshops", value: "Monthly" }
       ],
       icon: "◆"
+    },
+    {
+      role: "Vice-Chair",
+      company: "IEEE Computational Society",
+      companyFull: "IEEE Computer Society Student Branch",
+      location: "Adani University, Ahmedabad",
+      period: "2026 — Present",
+      type: "Leadership",
+      description: [
+        "Co-led the execution of technical seminars, algorithmic coding competitions, and computational workshops, driving a 30% increase in society event attendance.",
+        "Facilitated computational research initiatives and peer-to-peer mentoring, bridging the gap between theoretical computer science and applied mathematics for society members."
+      ],
+      highlights: [
+        { label: "Attendance", value: "+30%" },
+        { label: "Seminars", value: "Regular" },
+        { label: "Focus", value: "CS & Math" }
+      ],
+      icon: "◇"
     }
   ];
 

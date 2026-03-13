@@ -118,10 +118,6 @@ const Skills = () => {
                 ))}
               </div>
             </div>
-
-            <div className="skills-radar">
-              <SkillsRadar categories={skillCategories} activeIndex={activeCategory} />
-            </div>
           </div>
         </div>
       </div>
@@ -169,115 +165,6 @@ const SkillBar = ({ skill, index }) => {
       </div>
       <p className="skill-detail">{skill.detail}</p>
     </motion.div>
-  );
-};
-
-const SkillsRadar = ({ categories, activeIndex }) => {
-  const size = 280;
-  const center = size / 2;
-  const radius = size / 2 - 40;
-  const levels = 5;
-
-  const getPoint = (index, value) => {
-    const angle = (Math.PI * 2 * index) / categories.length - Math.PI / 2;
-    const r = (value / 100) * radius;
-    return {
-      x: center + r * Math.cos(angle),
-      y: center + r * Math.sin(angle),
-    };
-  };
-
-  const avgSkills = categories.map(cat => 
-    cat.skills.reduce((sum, s) => sum + s.level, 0) / cat.skills.length
-  );
-
-  const points = avgSkills.map((level, i) => getPoint(i, level));
-  const pathD = points.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.x} ${p.y}`).join(' ') + ' Z';
-
-  return (
-    <svg viewBox={`0 0 ${size} ${size}`} className="radar-svg">
-      {/* Grid circles */}
-      {[...Array(levels)].map((_, i) => (
-        <circle
-          key={i}
-          cx={center}
-          cy={center}
-          r={(radius / levels) * (i + 1)}
-          fill="none"
-          stroke="var(--color-border)"
-          strokeWidth="1"
-          opacity="0.3"
-        />
-      ))}
-
-      {/* Axis lines */}
-      {categories.map((_, i) => {
-        const point = getPoint(i, 100);
-        return (
-          <line
-            key={i}
-            x1={center}
-            y1={center}
-            x2={point.x}
-            y2={point.y}
-            stroke="var(--color-border)"
-            strokeWidth="1"
-            opacity="0.3"
-          />
-        );
-      })}
-
-      {/* Data polygon */}
-      <motion.path
-        d={pathD}
-        fill="url(#radarGradient)"
-        stroke="var(--color-accent)"
-        strokeWidth="2"
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-      />
-
-      {/* Data points */}
-      {points.map((point, i) => (
-        <motion.circle
-          key={i}
-          cx={point.x}
-          cy={point.y}
-          r={i === activeIndex ? 6 : 4}
-          fill={i === activeIndex ? "var(--color-accent)" : "var(--color-surface)"}
-          stroke="var(--color-accent)"
-          strokeWidth="2"
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          transition={{ delay: i * 0.1, duration: 0.3 }}
-        />
-      ))}
-
-      {/* Labels */}
-      {categories.map((cat, i) => {
-        const point = getPoint(i, 115);
-        return (
-          <text
-            key={i}
-            x={point.x}
-            y={point.y}
-            textAnchor="middle"
-            dominantBaseline="middle"
-            className={`radar-label ${i === activeIndex ? 'active' : ''}`}
-          >
-            {cat.name}
-          </text>
-        );
-      })}
-
-      <defs>
-        <linearGradient id="radarGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="var(--color-accent)" stopOpacity="0.3" />
-          <stop offset="100%" stopColor="var(--color-accent-secondary)" stopOpacity="0.1" />
-        </linearGradient>
-      </defs>
-    </svg>
   );
 };
 

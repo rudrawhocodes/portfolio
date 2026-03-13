@@ -71,7 +71,7 @@
 /* Visualization */
 .skills-visualization {
   display: grid;
-  grid-template-columns: 1fr 300px;
+  grid-template-columns: 1fr;
   gap: var(--space-2xl);
   align-items: start;
 }
@@ -172,45 +172,9 @@
   line-height: 1.5;
 }
 
-/* Radar */
-.skills-radar {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: var(--space-xl);
-  background: linear-gradient(145deg, #0a0a0a 0%, #050505 50%, #080808 100%);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: 16px;
-  box-shadow: 
-    0 0 0 1px rgba(255, 255, 255, 0.02),
-    0 8px 32px rgba(0, 0, 0, 0.4),
-    inset 0 1px 0 rgba(255, 255, 255, 0.03);
-}
-
-.radar-svg {
-  width: 100%;
-  max-width: 280px;
-}
-
-.radar-label {
-  font-family: var(--font-mono);
-  font-size: 9px;
-  fill: var(--color-text-muted);
-  transition: fill 0.3s ease;
-}
-
-.radar-label.active {
-  fill: var(--color-accent);
-  font-weight: 600;
-}
-
 @media (max-width: 1200px) {
   .skills-visualization {
     grid-template-columns: 1fr;
-  }
-
-  .skills-radar {
-    order: -1;
   }
 }
 
